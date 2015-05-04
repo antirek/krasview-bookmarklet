@@ -1,0 +1,68 @@
+<html>
+<head>
+  
+</head>
+<body>
+<h3>Krasview.ru bookmarklet video finder</h3>
+
+<br/>  
+<a href="javascript:(function(){ 
+ 
+    var script_jquery = document.createElement('script');
+    script_jquery.setAttribute('src', 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js');    
+    script_jquery.setAttribute('type', 'text/javascript');      
+    script_jquery.onload = onJqueryLoad;
+
+    document.head.appendChild(script_jquery);
+  
+    function onJqueryLoad(){
+ 
+      var url = getVideoUrl();
+ 
+      if(url){
+        showVideoUrl(url);
+      }     
+    }
+ 
+    function showVideoUrl(url){
+ 
+      var link = $('<a>',{href: url, text: 'video', target: '_new'});
+ 
+      var popup = $('<div>', {
+          id: 'popup', 
+          text: ''
+        })
+        .css('position', 'fixed')
+        .css('background', '#030303')
+        .css('display', 'block')
+        .css('top', 120)
+        .css('left', 120)
+        .css('width', 100)
+        .css('heigth', 100)
+        .css('border', '1px solid #000')
+        .css('border-radius', '5px')
+        .css('padding', '5px')
+        .css('color', '#FFF');
+ 
+      popup.append(link);
+      $('body').append(popup); 
+    }
+ 
+    function getVideoUrl(){
+      try {
+        var url = $('#video-flash').find('param[name*=\'flashvars\']')[0].value.split('&')[2].split('=')[1];
+        console.log(url);
+      }catch(e){
+        alert(e);
+      }
+      return url;
+    }
+ 
+    
+  })();">video link finder</a>
+
+
+<p>drag this link to bookmarks panel.</p>
+
+</body>
+</html>
