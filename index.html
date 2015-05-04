@@ -1,6 +1,6 @@
 <html>
 <head>
-  
+    
 </head>
 <body>
 <h3>Krasview.ru bookmarklet video finder</h3>
@@ -49,8 +49,8 @@
     }
  
     function getVideoUrl(){
-      try {
-        var url = $('#video-flash').find('param[name*=\'flashvars\']')[0].value.split('&')[2].split('=')[1];
+      try {        
+        var url = $('#video-flash').attr('src');
         console.log(url);
       }catch(e){
         alert(e);
